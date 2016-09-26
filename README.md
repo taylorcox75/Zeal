@@ -1,4 +1,4 @@
-#Zeal
+#Zeal [![Build Status](https://travis-ci.org/taylorcox75/Zeal.svg?branch=master)](https://travis-ci.org/taylorcox75/Zeal)
 
 ## [Taylor Cox](http://taylorcox75@gmail.com), [YuanJun Ma](http://yuanma@email.arizona.edu), [Siddharth Sharma](http://siddi.sharma@gmail.com),[ Chioke Aarhus](http://caarhus@email.arizona.edu)
 
@@ -31,10 +31,4 @@ TBD
 
 ## **Beta Release**
 TBD
-
-
-  
-
-
-
 

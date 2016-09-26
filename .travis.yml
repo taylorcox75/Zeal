@@ -9,3 +9,4 @@ before_script:
 script: gulp
 notifications:
   slack: sleepwalk3rs:ehBGoAg7PGq4pqo6wKFCl1Sr
+  email: false
