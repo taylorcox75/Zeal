@@ -1,0 +1,19 @@
+{
+  "name": "Zeal",
+  "description": "Project",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:taylorcox75/Zeal.git"
+  },
+  "main": "index",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "nodemon": "^1.10.2"
+  },
+  "scripts": {
+  "test": "gulp"
+},
+  "author": "Zeal",
+  "license": "MIT"
+}
