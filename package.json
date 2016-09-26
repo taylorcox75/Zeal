@@ -1,6 +1,6 @@
 {
   "name": "Zeal",
-  "description": "Project",
+  "description": "Project for 436",
   "version": "1.0.0",
   "repository": {
     "type": "git",
@@ -8,12 +8,16 @@
   },
   "main": "index",
   "dependencies": {
-    "gulp": "^3.9.1",
-    "nodemon": "^1.10.2"
+    "node-wit": "^4.1.0",
+    "sql": "^0.71.0"
   },
-  "scripts": {
-  "test": "gulp"
-},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.2"
+  },
+    "scripts": {
+    "gulp": "gulp"
+  },
   "author": "Zeal",
   "license": "MIT"
 }
