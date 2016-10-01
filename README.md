@@ -3,15 +3,12 @@
 ## [Taylor Cox](http://taylorcox75@gmail.com), [YuanJun Ma](http://yuanma@email.arizona.edu), [Siddharth Sharma](http://siddi.sharma@gmail.com),[ Chioke Aarhus](http://caarhus@email.arizona.edu)
 
 ##Project Setup
->Download **[Node.js](https://nodejs.org/en/)** (Any version 4.5+ will do)
->>*[Direct Mac Download](https://nodejs.org/dist/v4.5.0/node-v4.5.0.pkg)* 
-
 ###In Terminal at Desired Location
 >`git clone git@github.com:taylorcox75/Zeal.git`
 
 >`cd Zeal`
 
->`npm install`
+>`pip install -r requirements.txt`
 
 Dependencies should be installed. To test run:
 
