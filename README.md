@@ -10,9 +10,7 @@
 
 >`pip install -r requirements.txt`
 
-Dependencies should be installed. To test run:
 
->`npm run gulp`
 
 # One Solution.  One Bot
 
