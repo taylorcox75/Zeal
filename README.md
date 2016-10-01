@@ -10,7 +10,11 @@
 
 >`pip install -r requirements.txt`
 
+To Run:
 
+>`python zealBot.py`
+
+>`./ngrok http 3000`
 
 # One Solution.  One Bot
 
