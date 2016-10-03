@@ -8,7 +8,7 @@ from flask import Flask, request
 
 application = Flask(__name__)
 app = application
-PAT = 'EAAZAWPnkEQSsBANYrmPUQ7ScdgVwW1PMVGdymgg6Jstvtrk46xZBckw1VTMj0GWmDgXKgZBKhibtI7SiBORaeZC1KG9ooZAI92fZCjblv0lMyN3TDPE8ZALpQ9pvv04TEE9IXbgHHZAp0mETqBO0x7aw3dz37Vkrooj0lsKx6xcjDgZDZD'
+PAT = 'EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD'
 
 @app.route('/', methods=['GET'])
 def handle_verification():
