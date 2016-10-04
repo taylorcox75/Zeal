@@ -1,62 +1,76 @@
 from flask import Flask, request
-import json
 import requests
+import sys
+import os
+import json
 
 app = Flask(__name__)
-
-application = Flask(__name__)
-app = application
-PAT = 'EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD'
-# This needs to be filled with the Page Access Token that will be provided
-# by the Facebook App that will be created.
 
 
 @app.route('/', methods=['GET'])
 def handle_verification():
-  print "Handling Verification."
-  if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
-    print "Verification successful!"
-    return request.args.get('hub.challenge', '')
-  else:
-    print "Verification failed!"
-    return 'Error, wrong validation token'
+    if request.args.get('hub.verify_token', '') == "abc123":
+        return request.args.get('hub.challenge', 200)
+    else:
+        return 'Error, wrong validation token'
+
 
 @app.route('/', methods=['POST'])
 def handle_messages():
-  print "Handling Messages"
-  payload = request.get_data()
-  print payload
-  for sender, message in messaging_events(payload):
-    print "Incoming from %s: %s" % (sender, message)
-    send_message(PAT, sender, message)
-  return "ok"
+    data = request.get_json()
+    log(data)
 
-def messaging_events(payload):
-  """Generate tuples of (sender_id, message_text) from the
-  provided payload.
-  """
-  data = json.loads(payload)
-  messaging_events = data["entry"][0]["messaging"]
-  for event in messaging_events:
-    if "message" in event and "text" in event["message"]:
-      yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
-    else:
-      yield event["sender"]["id"], "I can't echo this"
+    if data["object"] == "page":
+
+        for entry in data["entry"]:
+            for messaging_event in entry["messaging"]:
+
+                if messaging_event.get("message"):
+                    sender_id = messaging_event["sender"]["id"]
+                    recipient_id = messaging_event["recipient"]["id"]
+                    message_text = messaging_event["message"]["text"]
+                    print (message_text)
+                    send_message(sender_id, message_text)
+                if messaging_event.get("delivery"):
+                    pass
+
+                if messaging_event.get("optin"):
+                    pass
+
+                if messaging_event.get("postback"):
+                    pass
+
+    return "ok", 200
 
 
-def send_message(token, recipient, text):
-  """Send the message text to recipient with id recipient.
-  """
+def send_message(recipient_id, message_text):
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
-  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": token},
-    data=json.dumps({
-      "recipient": {"id": str(recipient)},
-      "message": {"text": text.decode('unicode_escape')}
-    }),
-    headers={'Content-type': 'application/json'})
-  if r.status_code != requests.codes.ok:
-    print r.text
+    params = {
+        "access_token": "EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "text": message_text
+        }
+    })
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+    log(r.text)
+
+
+def log(message):  # simple wrapper for logging to stdout on heroku
+    print str(message)
+    sys.stdout.flush()
+
 
 if __name__ == '__main__':
-  app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
