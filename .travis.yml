@@ -1,8 +1,9 @@
-language: ruby
+llanguage: ruby
+cache: bundler
+sudo: false
 rvm:
-  - 2.2
-  - jruby
-  - rbx-2
+  - 2.3.0
+script: bundle exec rake
 notifications:
   slack: sleepwalk3rs:ehBGoAg7PGq4pqo6wKFCl1Sr
   email: false
