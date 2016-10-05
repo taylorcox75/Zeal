@@ -1,12 +1,8 @@
-language: node_js
-node_js:
-- "6"
-- "6.1"
-- "5.11"
-- "iojs"
-before_script:
-- npm install -g gulp
-script: gulp
+language: ruby
+rvm:
+  - 2.2
+  - jruby
+  - rbx-2
 notifications:
   slack: sleepwalk3rs:ehBGoAg7PGq4pqo6wKFCl1Sr
   email: false
