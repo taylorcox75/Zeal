@@ -1,6 +1,6 @@
 #Zeal [![Build Status](https://travis-ci.com/taylorcox75/Zeal.svg?token=XbqCKDp6PtzWG54UBd9w&branch=master)](https://travis-ci.com/taylorcox75/Zeal)
 
-## [Taylor Cox](http://taylorcox75@gmail.com), [YuanJun Ma](http://yuanma@email.arizona.edu), [Siddharth Sharma](http://siddi.sharma@gmail.com),[ Chioke Aarhus](http://caarhus@email.arizona.edu)
+## [Taylor Cox](mailto:taylorcox75@gmail.com), [YuanJun Ma](mailto:yuanma@email.arizona.edu), [Siddharth Sharma](mailto:siddi.sharma@gmail.com),[ Chioke Aarhus](mailto:caarhus@email.arizona.edu)
 
 ##Project Setup
 
