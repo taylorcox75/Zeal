@@ -23,7 +23,7 @@
 
 >New Terminal Tab
 
->`./ngrok http 3000`
+>`./ngrok http 3000 -subdomain=zeal`
 
 # One Solution.  One Bot
 
