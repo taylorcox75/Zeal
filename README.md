@@ -1,18 +1,27 @@
-#Zeal [![Build Status](https://travis-ci.org/taylorcox75/Zeal.svg?branch=master)](https://travis-ci.org/taylorcox75/Zeal)
+#Zeal [![Build Status](https://travis-ci.com/taylorcox75/Zeal.svg?token=XbqCKDp6PtzWG54UBd9w&branch=master)](https://travis-ci.com/taylorcox75/Zeal)
 
 ## [Taylor Cox](http://taylorcox75@gmail.com), [YuanJun Ma](http://yuanma@email.arizona.edu), [Siddharth Sharma](http://siddi.sharma@gmail.com),[ Chioke Aarhus](http://caarhus@email.arizona.edu)
 
 ##Project Setup
+
+###Prerequisites
+
+>Ruby on Rails
+
+>`gem install rails`
+
+>`bundle install` 
+
 ###In Terminal at Desired Location
->`git clone git@github.com:taylorcox75/Zeal.git`
+>`git clone https://github.com/taylorcox75/Zeal.git`
 
 >`cd Zeal`
 
->`pip install -r requirements.txt`
+>`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
 
-To Run:
+>`rails s`
 
->`python zealBot.py`
+>New Terminal Tab
 
 >`./ngrok http 3000`
 
