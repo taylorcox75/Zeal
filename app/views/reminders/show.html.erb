@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Query:</strong>
+  <%= @reminder.query %>
+</p>
+
+<p>
+  <strong>Facebook user:</strong>
+  <%= @reminder.facebook_user_id %>
+</p>
+
+<p>
+  <strong>Duedate:</strong>
+  <%= @reminder.dueDate %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @reminder.priority %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @reminder.done %>
+</p>
+
+<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
+<%= link_to 'Back', reminders_path %>

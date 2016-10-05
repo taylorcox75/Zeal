@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reminders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Query</th>
+      <th>Facebook user</th>
+      <th>Duedate</th>
+      <th>Priority</th>
+      <th>Done</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reminders.each do |reminder| %>
+      <tr>
+        <td><%= reminder.query %></td>
+        <td><%= reminder.facebook_user_id %></td>
+        <td><%= reminder.dueDate %></td>
+        <td><%= reminder.priority %></td>
+        <td><%= reminder.done %></td>
+        <td><%= link_to 'Show', reminder %></td>
+        <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
+        <td><%= link_to 'Destroy', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reminder', new_reminder_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  query: MyText
+  facebook_user_id: MyString
+  dueDate: 2016-10-04 17:50:26
+  priority: 1
+  done: false
+
+two:
+  query: MyText
+  facebook_user_id: MyString
+  dueDate: 2016-10-04 17:50:26
+  priority: 1
+  done: false

@@ -1,1 +1,0 @@
-web: gunicorn facebookbot:app
