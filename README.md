@@ -18,7 +18,7 @@
 >`cd Zeal`
 
 To Reinit Dev Bot
->`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAHmwb2d3QshpnXDx9bucJAB0d9y3RJ8vuA2OV7XaMyNEJMsuJPpzRZBkzC7ZBgmNYnsN6EK7U1zEuZBDmfCSFJuM1kAvxKVZA1d61FIuTkDMR1fcw4KCgh84ZB5fk1IJ3wZBvDdFZC0ZC6kLanYIogf74JoVeW4WIAZDZD"`
+>`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAEaNSbDzrwBAMHdn3oJ7cbSRwumMt9nwfFUZAIpGDuajvKM2FvuvbNklf1ZCevkroE9ZAbEDZCZAMwLQlvGTzzlpThBsHaeVSvpOULDj1eCMtzPJ2cfrYencmWtH6J0lZALEvaJnVWZCzXbQqUaorKvKo1MjILdM225rc7bmkldgZDZD"`
 
 >`rails s`
 
