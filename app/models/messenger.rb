@@ -20,14 +20,13 @@ class Messenger
       greeting = 1
      end
 
-     print greeting
-     print responded
     if greeting==1 && responded=="no"
-      replyString = "Hey thanks for using Zeal, I'm a reminder bot'."
+      replyString = "Hey thanks for using Zeal, I'm a reminder bot."
       Messenger.reply(replyString,messageCounter,facebook_user_id)
       replyString = "Ask me to remind you about something"
       Messenger.reply(replyString,messageCounter,facebook_user_id)
       responded="yes"
+      return true
     end
 
     # check if incoming webhook contains a message
