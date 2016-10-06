@@ -30,10 +30,16 @@ class Messenger
     end
 
     # check if incoming webhook contains a message
-    if !message.nil? && !message["text"].nil?
+    # have a task with date, create reminder
+    if !message.nil? && !message["text"].nil? && !task.nil? && !taskDay.nil?
       # call reply() method
-      replyString = "Okay, I will remind you to " + task + " on " + taskDay
-      Messenger.reply(replyString,messageCounter,facebook_user_id)
+      date_parsed = DateTime.parse(taskDay)
+      reminder = Reminder.create(query: task, facebook_user_id: facebook_user_id, dueDate: date_parsed)
+      if reminder
+        replyString = "Okay, I will remind you to " + task + " on " + date_parsed.strftime("%A, %B #{date_parsed.day.ordinalize}, %Y at %l:%M %p")
+        Messenger.reply(replyString,messageCounter,facebook_user_id)
+      end
+      return true
     end
   end
 

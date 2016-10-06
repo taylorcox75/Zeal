@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 gem 'rest-client'
 gem 'nestful'
+gem 'delayed_job_active_record'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
