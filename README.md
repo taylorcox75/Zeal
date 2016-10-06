@@ -17,9 +17,13 @@
 
 >`cd Zeal`
 
->`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
+To Reinit Dev Bot
+>`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAHmwb2d3QshpnXDx9bucJAB0d9y3RJ8vuA2OV7XaMyNEJMsuJPpzRZBkzC7ZBgmNYnsN6EK7U1zEuZBDmfCSFJuM1kAvxKVZA1d61FIuTkDMR1fcw4KCgh84ZB5fk1IJ3wZBvDdFZC0ZC6kLanYIogf74JoVeW4WIAZDZD"`
 
 >`rails s`
+
+To Reinit main Bot
+>`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
 
 >New Terminal Tab
 
