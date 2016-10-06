@@ -8,13 +8,16 @@ class Messenger
 
 
 
-    # wit_response = Messenger.wit(message["text"])
-    # # check if the wit response was a "price" intent
-    # if wit_response["entities"]["intent"][0]["value"] == "price"
-    #   # return the value of the stock symbol
-    #   symbol = wit_response["entities"]["symbol"][0]["value"]
-    # end
-
+     wit_response = Messenger.wit(message["text"])
+     print(wit_response)
+     #check if the wit response was a "remind" intent
+     if wit_response["entities"]["intent"][0]["value"] == "remind"
+       #return the value of the stock symbol
+       task = wit_response["entities"]["intent"][0]["value"]
+       taskDay = wit_response["entities"]["datetime"]["body"]["value"]
+       print(task)
+       print(taskDay)
+     end
 
     # check if incoming webhook contains a message
     if !message.nil? && !message["text"].nil?
