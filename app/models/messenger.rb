@@ -11,10 +11,10 @@ class Messenger
      wit_response = Messenger.wit(message["text"])
      print(wit_response)
      #check if the wit response was a "remind" intent
-     if wit_response["entities"]["intent"][0]["value"] == "remind"
+     if !wit_response["entities"]["intent"].nil? && wit_response["entities"]["intent"][0]["value"] == "remind" 
        #return the value of the stock symbol
        task = wit_response["entities"]["intent"][0]["value"]
-       taskDay = wit_response["entities"]["datetime"]["body"]["value"]
+       taskDay = wit_response["entities"]["datetime"][0]["value"]
        print(task)
        print(taskDay)
      end
@@ -29,7 +29,7 @@ class Messenger
         },
         # set the message contents as the incoming message text
         "message"=>{
-          "text"=> message["text"]
+          "text"=> "Okay, I will remind you to " + task + " on " + taskDay
         }
       })
     end
