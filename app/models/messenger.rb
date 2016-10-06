@@ -1,5 +1,5 @@
 class Messenger
-  FACEBOOK_PAGE_ACCESS_TOKEN = "EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"
+  FACEBOOK_PAGE_ACCESS_TOKEN = ENV['FACEBOOK_ACCESS_TOKEN']
   WIT_ACCESS_TOKEN = "6NMGP4FDQ3COQMVYIV5NEHGQTLDUNRJF"
   def self.incoming(params)
     facebook_user_id = params["entry"][0]["messaging"][0]["sender"]["id"] # user id of sender
