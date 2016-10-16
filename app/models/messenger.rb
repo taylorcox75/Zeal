@@ -41,7 +41,7 @@ class Messenger
     end
 
     if greeting==1 && responded=="no"
-      replyString = "Hey thanks for using Zeal, I'm a reminder bot."
+      replyString = "Hey, thanks for using Zeal, I'm a reminder bot!"
       Messenger.reply(replyString,messageCounter,facebook_user_id)
       replyString = "Ask me to remind you about something"
       Messenger.reply(replyString,messageCounter,facebook_user_id)
@@ -90,12 +90,13 @@ class Messenger
     end
   end
 
-  # call the send_message method
+# call the send_message method
   def self.reply(text,messageCounter,facebook_user_id)
     begin
       messageCounter+=1
       return Messenger.send_message({
         # set recipient as the sender of the original message
+        "sender_action":"typing_on"
         "recipient" => {
           "id"=> facebook_user_id
         },
@@ -103,8 +104,10 @@ class Messenger
         "message"=>{
           "text"=> text
         }
+        "sender_action":"typing_off"
       })
     end
   end
 end
+
 
