@@ -90,13 +90,30 @@ class Messenger
     end
   end
 
+  def self.sendBubbleOn(facebook_user_id)
+    Messenger.send_message({
+        "recipient"=> {
+        "id"=>facebook_user_id
+        },
+        "sender_action"=>"typing_on"
+      })
+  end
+
+  def self.sendBubbleOff(facebook_user_id)
+      Messenger.send_message({
+        "recipient"=> {
+        "id"=>facebook_user_id
+        },
+        "sender_action"=>"typing_off"
+      })
+    end
+
 # call the send_message method
   def self.reply(text,messageCounter,facebook_user_id)
-    begin
       messageCounter+=1
-      return Messenger.send_message({
+      Messenger.sendBubbleOn(facebook_user_id)
+      Messenger.send_message({
         # set recipient as the sender of the original message
-        "sender_action":"typing_on"
         "recipient" => {
           "id"=> facebook_user_id
         },
@@ -104,9 +121,8 @@ class Messenger
         "message"=>{
           "text"=> text
         }
-        "sender_action":"typing_off"
       })
-    end
+      Messenger.sendBubbleOff(facebook_user_id)
   end
 end
 
