@@ -12,6 +12,14 @@
 
 >`bundle install` 
 
+> `brew update`
+
+> `brew install postgresql`
+
+> `gem install pg` 
+
+>`bundle install` 
+
 ###In Terminal at Desired Location
 >`git clone https://github.com/taylorcox75/Zeal.git`
 
