@@ -72,8 +72,11 @@ class Messenger
     end
 
     if greeting==1 && responded=="no"
-      replyString = "Hey, thanks for using Zeal, I'm a reminder bot!"
-      Messenger.reply(replyString,messageCounter,facebook_user_id)
+      greetings = ["Hey, thanks for using Zeal, I'm a reminder bot!",
+        "Hello I'm Zeal, and I'm the coolest reminder app made",
+        "Hey it's Zeal.",
+        "My name's Zeal"]
+      Messenger.reply(greetings.sample,messageCounter,facebook_user_id)
       replyString = "Ask me to remind you about something"
       Messenger.reply(replyString,messageCounter,facebook_user_id)
       responded="yes"
@@ -90,6 +93,20 @@ class Messenger
     end
     if !message.nil? && !message["text"].nil? && !task.nil? && !taskDay.nil? && hasTask && hasTaskDay
       # call reply() method
+      now = Time.new
+      if taskDay < now
+        responses = ["we cant time travel" , 
+          "You cant do that", 
+          "Woah woah woah, Zeal isn't really made for time travellers, yet...",
+          "Lets stick to the present for now",
+          "As much as I would like to go to the past, I can't...",
+          "Unfortunately, I can't do that",
+          "Cmon, you know I cant do that...yet ;)",
+          "Well, thats an interesting request. Unfortunately, I dont know how to go back in time.",
+          "Awesome, I've crea--- kidding, I cant make events for the past"]
+        Messenger.reply(responses.sample,messageCounter,facebook_user_id)
+        return
+      end
       date_parsed = DateTime.parse(taskDay)
       reminder = Reminder.create(query: task, facebook_user_id: facebook_user_id, dueDate: date_parsed, done: false)
       if reminder
