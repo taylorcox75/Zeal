@@ -12,6 +12,14 @@
 
 >`bundle install` 
 
+> `brew update`
+
+> `brew install postgresql`
+
+> `gem install pg` 
+
+>`bundle install` 
+
 ###In Terminal at Desired Location
 >`git clone https://github.com/taylorcox75/Zeal.git`
 
@@ -27,13 +35,13 @@ To Reinit main Bot
 
 >`rails s`(start server)
 
-Must run rake jobs:work to run reminder workers in databse.
+Must run rake jobs:work to run reminder workers in local machine databse.
 
 > `rake jobs:work`
  
 >New Terminal Tab
 
->`./ngrok http 3000 -subdomain=zeal`
+>`./ngrok http 3000 -subdomain=zeal2`
 
 # One Solution.  One Bot
 
