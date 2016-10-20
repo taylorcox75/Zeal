@@ -35,13 +35,13 @@ To Reinit main Bot
 
 >`rails s`(start server)
 
-Must run rake jobs:work to run reminder workers in databse.
+Must run rake jobs:work to run reminder workers in local machine databse.
 
 > `rake jobs:work`
  
 >New Terminal Tab
 
->`./ngrok http 3000 -subdomain=zeal`
+>`./ngrok http 3000 -subdomain=zeal2`
 
 # One Solution.  One Bot
 
