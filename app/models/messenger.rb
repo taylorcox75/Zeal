@@ -2,7 +2,8 @@ class Messenger
   FACEBOOK_PAGE_ACCESS_TOKEN = ENV['FACEBOOK_ACCESS_TOKEN']
   WIT_ACCESS_TOKEN = "6NMGP4FDQ3COQMVYIV5NEHGQTLDUNRJF"
   def self.incoming(params)
-    puts params["entry"][0]["postback"]
+
+    puts params["entry"][0]
     facebook_user_id = params["entry"][0]["messaging"][0]["sender"]["id"] # user id of sender
     
     messageCounter = 0
@@ -12,11 +13,30 @@ class Messenger
     hasTaskDay=false
 
     # check if postback exists
+  if !params["entry"][0]["messaging"].nil? && !params["entry"][0]["messaging"][0]["message"].nil? && !params["entry"][0]["messaging"][0]["message"]["quick_reply"].nil?
+     # view schedule button tapped
+    if params["entry"][0]["messaging"][0]["message"]["quick_reply"]["payload"] == "VIEW_SCHEDULE_PAYLOAD"
+      Messenger.replySchedule(Reminder.schedule(facebook_user_id),messageCounter,facebook_user_id)
+      return true
+    end
+
+    #View completed button tapped
+    if params["entry"][0]["messaging"][0]["message"]["quick_reply"]["payload"] == "VIEW_COMPLETED_PAYLOAD"
+      Messenger.replyScheduleCompleted(Reminder.completed(facebook_user_id),messageCounter,facebook_user_id)
+      return true
+    end
+  end
   if !params["entry"][0]["messaging"].nil? && !params["entry"][0]["messaging"][0]["postback"].nil? && !params["entry"][0]["messaging"][0]["postback"]["payload"].nil?
     
     # view schedule button tapped
     if params["entry"][0]["messaging"][0]["postback"]["payload"] == "VIEW_SCHEDULE_PAYLOAD"
       Messenger.replySchedule(Reminder.schedule(facebook_user_id),messageCounter,facebook_user_id)
+      return true
+    end
+
+    #View completed button tapped
+    if params["entry"][0]["messaging"][0]["postback"]["payload"] == "VIEW_COMPLETED_PAYLOAD"
+      Messenger.replyScheduleCompleted(Reminder.completed(facebook_user_id),messageCounter,facebook_user_id)
       return true
     end
 
@@ -28,9 +48,14 @@ class Messenger
       buttons = [
         {
           "type" => "postback",
-          "title" => "View Reminders",
+          "title" => "View Upcoming",
           "payload" => "VIEW_SCHEDULE_PAYLOAD"
-        }
+        },
+        {
+          "type" => "postback",
+          "title" => "View Completed",
+          "payload" => "VIEW_COMPLETED_PAYLOAD"
+        },
       ]
       if reminder.exists?
         reminder.first.destroy
@@ -46,6 +71,14 @@ class Messenger
      if !params["entry"][0]["messaging"].nil? && !params["entry"][0]["messaging"][0]["message"].nil? && !params["entry"][0]["messaging"][0]["message"]["text"].nil?
       message = params["entry"][0]["messaging"][0]["message"]
       wit_response = Messenger.wit(message["text"])
+      begin
+        url = URI(URI.encode("http://www.botlytics.co/api/v1/messages?token=3a991ec8988164eb&message[text]=#{message["text"]}&message[kind]=incoming&message[conversation_identifier]=#{facebook_user_id}&message[sender_identifier]=#{facebook_user_id}&message[platform]=Messenger"))
+        http = Net::HTTP.new(url.host, url.port)
+        request = Net::HTTP::Post.new(url)
+        response = http.request(request)
+      rescue => e
+        puts e
+      end
       print(wit_response)
        if !wit_response["entities"].nil? && !wit_response["entities"]["intent"].nil?
          if !wit_response["entities"]["intent"].nil? && wit_response["entities"]["intent"][0]["value"] == "remind" 
@@ -72,11 +105,13 @@ class Messenger
     end
 
     if greeting==1 && responded=="no"
-      greetings = ["Hey, thanks for using Zeal, I'm a reminder bot!",
+      greetingsList = ["Hey, thanks for using Zeal, I'm a reminder bot!",
         "Hello I'm Zeal, and I'm the coolest reminder app made",
         "Hey it's Zeal.",
-        "My name's Zeal"]
-      Messenger.reply(greetings.sample,messageCounter,facebook_user_id)
+        "My name's Zeal",
+        "Hello there!",
+        "Hows it going, I'm Zeal"]
+      Messenger.reply(greetingsList.sample,messageCounter,facebook_user_id)
       replyString = "Ask me to remind you about something"
       Messenger.reply(replyString,messageCounter,facebook_user_id)
       responded="yes"
@@ -159,6 +194,14 @@ class Messenger
 
 # call the send_message method
   def self.reply(text,messageCounter,facebook_user_id)
+    begin
+      url = URI(URI.encode("http://www.botlytics.co/api/v1/messages?token=3a991ec8988164eb&message[text]=#{text}&message[kind]=outgoing&message[conversation_identifier]=#{facebook_user_id}&message[sender_identifier]=#{facebook_user_id}&message[platform]=Messenger"))
+      http = Net::HTTP.new(url.host, url.port)
+      request = Net::HTTP::Post.new(url)
+      response = http.request(request)
+    rescue => e
+      puts e
+    end
       messageCounter+=1
       Messenger.sendBubbleOn(facebook_user_id)
       Messenger.send_message({
@@ -168,8 +211,18 @@ class Messenger
         },
         # set the message contents as the incoming message text
         "message"=>{
-          "text"=> text
-        }
+          "text"=> text,
+          "quick_replies" =>[{
+            "content_type"=>"text",
+            "title"=>"View Upcoming ⏲",
+            "payload"=>"VIEW_SCHEDULE_PAYLOAD"
+          },
+          {
+            "content_type"=>"text",
+            "title"=>"View Completed ✅",
+            "payload"=>"VIEW_COMPLETED_PAYLOAD"
+        }]
+      }
       })
       Messenger.sendBubbleOff(facebook_user_id)
   end
@@ -222,11 +275,6 @@ class Messenger
                       "payload"=>"DELETE_EVENT_PAYLOAD #{reminder_id}",
                       "title"=>"\u274C Delete"
                     },
-                    {
-                      "type"=>"postback",
-                      "title"=>"View Reminders",
-                      "payload"=>"VIEW_SCHEDULE_PAYLOAD"
-                    },
                   ]
                 },
               ]
@@ -244,6 +292,7 @@ class Messenger
       return true
     end
 
+
     reminders = []
       schedule.each do |reminder|
         reminders.push({
@@ -258,6 +307,7 @@ class Messenger
           ]
         })
       end
+
 
       messageCounter+=1
       Messenger.sendBubbleOn(facebook_user_id)
@@ -279,5 +329,44 @@ class Messenger
       })
       Messenger.sendBubbleOff(facebook_user_id)
   end
+
+  def self.replyScheduleCompleted(completed,messageCounter,facebook_user_id)
+    # no reminders
+    if completed.length == 0
+        Messenger.reply("You don't have any reminders completed.",messageCounter,facebook_user_id)
+      return true
+    end
+
+    
+    reminders = []
+      completed.each do |reminder|
+        reminders.push({
+          "title"=> "📅 " +reminder.query,
+          "subtitle"=> reminder.dueDate.strftime("%A, %B #{reminder.dueDate.day.ordinalize}, %Y at %l:%M %p"),
+        })
+      end
+
+
+      messageCounter+=1
+      Messenger.sendBubbleOn(facebook_user_id)
+      Messenger.send_message({
+        # set recipient as the sender of the original message
+        "recipient" => {
+          "id"=> facebook_user_id
+        },
+        # set the message contents as the incoming message text
+        "message"=>{
+          "attachment"=>{
+            "type"=>"template",
+            "payload"=>{
+              "template_type"=>"generic",
+              "elements"=> reminders.take(10)
+            }
+          },
+        }
+      })
+      Messenger.sendBubbleOff(facebook_user_id)
+  end
+
 end
 
