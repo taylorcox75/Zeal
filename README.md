@@ -12,11 +12,9 @@
 
 
 ##Project Setup
-
-###Prerequisites
-
->Ruby on Rails
-
+<details>
+  <summary>Ruby on Rails</summary>
+  
 >`gem install rails`
 
 >`bundle install` 
@@ -28,31 +26,43 @@
 > `gem install pg` 
 
 >`bundle install` 
+</details>
 
-###In Terminal at Desired Location
+<details>
+  <summary>Cloning Project</summary>
 >`git clone https://github.com/taylorcox75/Zeal.git`
 
 >`cd Zeal`
+</details>
 
-To Reinit Main Bot
+<details>
+  <summary>Reinitialize ZealBot (Production)</summary>
 > `curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
 
->`rails s`
+>`rails s`(start server)
+</details>
 
-To Reinit Development Bot
+<details>
+  <summary>Reinitialize ZealDevBot (Development)</summary>
 >`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAEaNSbDzrwBAMHdn3oJ7cbSRwumMt9nwfFUZAIpGDuajvKM2FvuvbNklf1ZCevkroE9ZAbEDZCZAMwLQlvGTzzlpThBsHaeVSvpOULDj1eCMtzPJ2cfrYencmWtH6J0lZALEvaJnVWZCzXbQqUaorKvKo1MjILdM225rc7bmkldgZDZD"`
 
 >`rails s`(start server)
+</details>
 
-Must run rake jobs:work to run reminder workers in local machine databse.
+
+<details>
+  <summary>Running Locally</summary>
+Must run rake jobs:work to run reminder workers
 
 > `rake jobs:work`
  
->New Terminal Tab
+New Terminal Tab
 
 >`./ngrok http 3000 -subdomain=zeal2`
+</details>
 
->Initializing Persistent Menu
+<details>
+  <summary>Initializing Persistent Menu</summary>
 > `curl -X POST -H "Content-Type: application/json" -d '{
   "setting_type" : "call_to_actions",
   "thread_state" : "existing_thread",
@@ -74,8 +84,15 @@ Must run rake jobs:work to run reminder workers in local machine databse.
     }
   ]
 }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
+</details>
 
-Pushing to Heroku (PUBLIC RELEASE OF BOT)
+
+<details>
+  <summary>Publishing to Heroku</summary>
+  <details>
+  <summary>WARNING: WILL PUSH TO PRODUCTION BOT</summary>
 >`git push heroku master`
+</details>
+</details>
 
 
