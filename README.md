@@ -25,12 +25,12 @@
 
 >`cd Zeal`
 
-To Reinit Dev Bot
+To Reinit Main Bot
 >`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAEaNSbDzrwBAMHdn3oJ7cbSRwumMt9nwfFUZAIpGDuajvKM2FvuvbNklf1ZCevkroE9ZAbEDZCZAMwLQlvGTzzlpThBsHaeVSvpOULDj1eCMtzPJ2cfrYencmWtH6J0lZALEvaJnVWZCzXbQqUaorKvKo1MjILdM225rc7bmkldgZDZD"`
 
 >`rails s`
 
-To Reinit main Bot
+To Reinit Development Bot
 >`curl -X POST "https://graph.facebook.com/v2.6/me/subscribed_apps?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
 
 >`rails s`(start server)
