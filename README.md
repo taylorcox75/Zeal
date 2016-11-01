@@ -1,6 +1,15 @@
 #Zeal [![Build Status](https://travis-ci.com/taylorcox75/Zeal.svg?token=XbqCKDp6PtzWG54UBd9w&branch=master)](https://travis-ci.com/taylorcox75/Zeal)
+[Taylor Cox](mailto:taylorcox75@gmail.com), [YuanJun Ma](mailto:yuanma@email.arizona.edu), [Siddharth Sharma](mailto:siddi.sharma@gmail.com),[ Chioke Aarhus](mailto:caarhus@email.arizona.edu)
 
-## [Taylor Cox](mailto:taylorcox75@gmail.com), [YuanJun Ma](mailto:yuanma@email.arizona.edu), [Siddharth Sharma](mailto:siddi.sharma@gmail.com),[ Chioke Aarhus](mailto:caarhus@email.arizona.edu)
+<h1 align="center">Remind yourself about a task.</h1>
+<h3 align="center"> Zeal is a bot that re-thinks the way you deal with reminders.
+<br>Send Zeal a message to create a reminder.
+<br>
+<img src="http://i.imgur.com/9YOhOud.png"></h3>
+<br>
+
+
+
 
 ##Project Setup
 
@@ -69,18 +78,4 @@ Must run rake jobs:work to run reminder workers in local machine databse.
 Pushing to Heroku (PUBLIC RELEASE OF BOT)
 >`git push heroku master`
 
-# One Solution.  One Bot
-
-The main idea behind Zeal is rethinking the way we establish reminders. With a simple interface, Zeal functions as a bot whose sole goal is to assist in aiming for the completion of the user’s goals. Zeal will handle reminders in a unique way. It will offer location based reminders, as well as scanning user’s social calendars and such, with the use of various API’s. With a completely rebuilt way of using prioritized reminders, Zeal will make sure the user gets their tasks completed.
-
-
-# Project Iterations
-## **Viable Release**
-TBD
-
-## **Functional Release**
-TBD
-
-## **Beta Release**
-TBD
 
