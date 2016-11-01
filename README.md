@@ -66,6 +66,9 @@ Must run rake jobs:work to run reminder workers in local machine databse.
   ]
 }' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAZAWPnkEQSsBAEUWcLGQbOX0p80br14CXyddWdKhvKe52wWSDzpHZB0q3bbKcuvNxDiYpOfwcMDN7yGks8ZCr1WPc9wZBlVRATf3FZAdb566RvLTR85AFnsOxQ7rf8CDwStaL9yZCP8uSKGEXZASLfvkiZCmpxHycoK8OoVCZCz8eQZDZD"`
 
+Pushing to Heroku (PUBLIC RELEASE OF BOT)
+>`git push heroku master`
+
 # One Solution.  One Bot
 
 The main idea behind Zeal is rethinking the way we establish reminders. With a simple interface, Zeal functions as a bot whose sole goal is to assist in aiming for the completion of the user’s goals. Zeal will handle reminders in a unique way. It will offer location based reminders, as well as scanning user’s social calendars and such, with the use of various API’s. With a completely rebuilt way of using prioritized reminders, Zeal will make sure the user gets their tasks completed.
