@@ -4,7 +4,7 @@ class Messenger
   def self.incoming(params)
     puts params["entry"][0]["postback"]
     facebook_user_id = params["entry"][0]["messaging"][0]["sender"]["id"] # user id of sender
-    
+
     messageCounter = 0
     greeting=0
     responded = "no" #flag to see if we've responded yet to the hello request
@@ -13,14 +13,14 @@ class Messenger
 
     # check if postback exists
   if !params["entry"][0]["messaging"].nil? && !params["entry"][0]["messaging"][0]["postback"].nil? && !params["entry"][0]["messaging"][0]["postback"]["payload"].nil?
-    
+
     # view schedule button tapped
     if params["entry"][0]["messaging"][0]["postback"]["payload"] == "VIEW_SCHEDULE_PAYLOAD"
       Messenger.replySchedule(Reminder.schedule(facebook_user_id),messageCounter,facebook_user_id)
       return true
     end
 
-    # delete event 
+    # delete event
     if params["entry"][0]["messaging"][0]["postback"]["payload"].index("DELETE_EVENT_PAYLOAD") == 0
       payload = params["entry"][0]["messaging"][0]["postback"]["payload"]
       reminder_id = payload.split(" ").drop(1).join(" ")
@@ -48,19 +48,22 @@ class Messenger
       wit_response = Messenger.wit(message["text"])
       print(wit_response)
        if !wit_response["entities"].nil? && !wit_response["entities"]["intent"].nil?
-         if !wit_response["entities"]["intent"].nil? && wit_response["entities"]["intent"][0]["value"] == "remind" 
+         if !wit_response["entities"]["intent"].nil? && wit_response["entities"]["intent"][0]["value"] == "remind"
            #gets info about the reminder
            intent = wit_response["entities"]["intent"][0]["value"]
-           
+
            if !wit_response["entities"]["agenda_entry"].nil?
             task = wit_response["entities"]["agenda_entry"][0]["value"]
             hasTask = true
            end
 
-         if !wit_response["entities"]["datetime"].nil?
+         if !wit_response["entities"]["datetime"][0]["to"].nil?
+           taskDay = wit_response["entities"]["datetime"][0]["to"]["value"]
+           hasTaskDay = true
+         else
            taskDay = wit_response["entities"]["datetime"][0]["value"]
            hasTaskDay = true
-          end
+         end
         end
       end
 
@@ -95,8 +98,8 @@ class Messenger
       # call reply() method
       now = Time.new
       if taskDay < now
-        responses = ["we cant time travel" , 
-          "You cant do that", 
+        responses = ["we cant time travel" ,
+          "You cant do that",
           "Woah woah woah, Zeal isn't really made for time travellers, yet...",
           "Lets stick to the present for now",
           "As much as I would like to go to the past, I can't...",
@@ -280,4 +283,3 @@ class Messenger
       Messenger.sendBubbleOff(facebook_user_id)
   end
 end
-
