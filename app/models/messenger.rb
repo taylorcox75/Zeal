@@ -8,6 +8,7 @@ class Messenger
 
     messageCounter = 0
     greeting=0
+    thanks=0
     responded = "no" #flag to see if we've responded yet to the hello request
     hasTask=false
     hasTaskDay=false
@@ -25,6 +26,11 @@ class Messenger
       Messenger.replyScheduleCompleted(Reminder.completed(facebook_user_id),messageCounter,facebook_user_id)
       return true
     end
+  end
+  if !params["entry"][0]["messaging"][0]["postback"].nil? &&params["entry"][0]["messaging"][0]["postback"]["payload"] == "GET_STARTED_PAYLOAD"
+    Messenger.reply("Hey, thanks for using Zeal, I'm a reminder bot!",messageCounter,facebook_user_id)
+    Messenger.reply("Ask me to remind you about something!",messageCounter,facebook_user_id)
+    return
   end
   if !params["entry"][0]["messaging"].nil? && !params["entry"][0]["messaging"][0]["postback"].nil? && !params["entry"][0]["messaging"][0]["postback"]["payload"].nil?
 
@@ -106,6 +112,10 @@ class Messenger
           greeting = 1
           end
       end
+    elsif !wit_response["entities"].nil? && !wit_response["entities"]["Thanks"].nil?
+        if !wit_response["entities"]["Thanks"][0].nil?
+        thanks=1
+      end
     end
 
     if greeting==1 && responded=="no"
@@ -122,6 +132,9 @@ class Messenger
       return true
     end
 
+    if thanks==1 && responded == "no"
+      Messenger.reply("You're welcome",messageCounter,facebook_user_id)
+    end
     # check if incoming webhook contains a message
     # have a task with date, create reminder
 
