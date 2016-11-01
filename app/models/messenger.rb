@@ -41,7 +41,7 @@ class Messenger
       return true
     end
 
-    # delete event 
+    # delete event
     if params["entry"][0]["messaging"][0]["postback"]["payload"].index("DELETE_EVENT_PAYLOAD") == 0
       payload = params["entry"][0]["messaging"][0]["postback"]["payload"]
       reminder_id = payload.split(" ").drop(1).join(" ")
