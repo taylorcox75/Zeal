@@ -1,4 +1,7 @@
-#Zeal [![Build Status](https://travis-ci.com/taylorcox75/Zeal.svg?token=XbqCKDp6PtzWG54UBd9w&branch=master)](https://travis-ci.com/taylorcox75/Zeal)
+# Zeal 
+
+
+[![Build Status](https://travis-ci.com/taylorcox75/Zeal.svg?token=XbqCKDp6PtzWG54UBd9w&branch=master)](https://travis-ci.com/taylorcox75/Zeal)
 [Taylor Cox](mailto:taylorcox75@gmail.com), [YuanJun Ma](mailto:yuanma@email.arizona.edu), [Siddharth Sharma](mailto:siddi.sharma@gmail.com),[ Chioke Aarhus](mailto:caarhus@email.arizona.edu)
 
 <h1 align="center">Remind yourself about a task.</h1>
@@ -11,7 +14,7 @@
 
 
 
-##Project Setup
+## Project Setup
 <details>
   <summary>Ruby on Rails</summary>
   
